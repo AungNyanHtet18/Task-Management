@@ -13,6 +13,7 @@ export default function Pagination() {
                         <option value="50">50</option>
                     </select>
                 </div>
+                
             </div>
 
             {/* Link List */}
@@ -31,15 +32,15 @@ export default function Pagination() {
 
               </div>
 
-            <div className="col-auto d-flex justify-content-end">
+            <div className="col d-flex justify-content-end">
                 {/* Total */}
-                <div className="input-group">
+                <div className="input-group me-2 pagination-info">
                     <span className="input-group-text">Pages</span>
                     <span className="form-control">1</span>
                 </div>
 
                 {/* Total Records */}
-                <div className="input-group">
+                <div className="input-group ms-2 pagination-info">
                     <span className="input-group-text">Total</span>
                     <span className="form-control">1</span>
                 </div>
