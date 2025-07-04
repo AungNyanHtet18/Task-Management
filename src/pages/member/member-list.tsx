@@ -3,13 +3,14 @@ import type { MemberSearch } from "../../model/input/member-search";
 import { FormGroup } from "../../ui/form-group";
 import Page from "../../ui/page";
 import Pagination from "../../ui/pagination";
+import { Link, useNavigate } from "react-router";
 
 export default function MemberList() {
 
       const {register, handleSubmit} = useForm<MemberSearch>();
 
       function search(form:MemberSearch) {
-          console.log(form);
+          console.log(form)
       }
 
      return (
@@ -42,9 +43,9 @@ export default function MemberList() {
                      <i className="bi-search"></i>Search
                   </button>
 
-                  <button type="button" className="btn btn-outline-dark">
+                  <Link to= "/member/edit"  type="button" className="btn btn-outline-dark">
                      <i className="bi-plus"></i>Add New Member
-                  </button>
+                  </Link>
 
                </div>
             </form>
@@ -56,8 +57,8 @@ export default function MemberList() {
                      <th>Name</th>
                      <th>Position</th>
                      <th>Entry At</th>
-                     <th>Projects</th>
-                     <th>Tasks</th>
+                     <th className="text-center">Projects</th>
+                     <th className="text-end">Tasks</th>
                   </tr>
 
                </thead>
@@ -65,7 +66,6 @@ export default function MemberList() {
                <tbody>
                   <MemberRow/>
                </tbody>
-
             </table>
 
              <Pagination />
@@ -74,16 +74,28 @@ export default function MemberList() {
 }
 
 function MemberRow() {
+
+   const navigate = useNavigate()
+
+   function showDetails(id: number) {
+       navigate(`/member/details/${id}`)
+   }
+
     return (
       <tr>
          <td>1</td>
          <td>Aung Nyan</td>
          <td>Backend Developer</td>
          <td>2023-07-18</td>
-         <td className="text-end">3</td>
+         <td className="text-center">3</td>
          <td className="text-end">20</td>
          <td className="text-center">
-            <a href="#" className="icon-link"><i className="bi-send"></i></a>
+            <a href="#" onClick={e => {
+               e.preventDefault
+               showDetails(1)
+            }} className="icon-link">
+               <i className="bi-send"></i>
+            </a>
          </td>
       </tr>
     )
