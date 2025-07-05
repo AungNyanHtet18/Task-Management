@@ -33,6 +33,7 @@ export default function Pagination() {
               </div>
 
             <div className="col d-flex justify-content-end">
+                
                 {/* Total */}
                 <div className="input-group me-2 pagination-info">
                     <span className="input-group-text">Pages</span>

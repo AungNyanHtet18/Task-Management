@@ -58,9 +58,10 @@ export default function MemberList() {
                      <th>Position</th>
                      <th>Entry At</th>
                      <th className="text-center">Projects</th>
-                     <th className="text-end">Tasks</th>
+                     <th className="text-end">To Do</th>
+                     <th className="text-end">Behind</th>
+                     <th className="text-end">Complete</th>
                   </tr>
-
                </thead>
 
                <tbody>
@@ -89,12 +90,14 @@ function MemberRow() {
          <td>2023-07-18</td>
          <td className="text-center">3</td>
          <td className="text-end">20</td>
+         <td className="text-end">20</td>
+          <td className="text-end">20</td>
          <td className="text-center">
             <a href="#" onClick={e => {
                e.preventDefault
                showDetails(1)
             }} className="icon-link">
-               <i className="bi-send"></i>
+               <i className="bi bi-arrow-right"></i>
             </a>
          </td>
       </tr>
