@@ -1,4 +1,4 @@
-export type Pager = {
+export interface Pager  {
      page: number
      size: number
      totalPage: number

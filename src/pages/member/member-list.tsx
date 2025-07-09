@@ -6,16 +6,18 @@ import Pagination from "../../ui/pagination";
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import type { MemberListItem, MemberSearchResult } from "../../model/output/member-list-item";
+import { searchMember } from "../../model/client/member-client";
 
 export default function MemberList() {
 
       const {register, handleSubmit} = useForm<MemberSearch>()
       const[result, setResult] = useState<MemberSearchResult | undefined>(undefined)
 
-      function search(form:MemberSearch) {
-          console.log(form)
+     async function search(form:MemberSearch) {
+         console.log(form);
+         const searchResult = await searchMember(form)
+         setResult(searchResult)
       }
-
 
      return (
         <Page title="Member Management" icon="bi-people" >
@@ -56,9 +58,8 @@ export default function MemberList() {
 
           {
             result ? 
-               <MemberTable result={result}/> :
+               <MemberTable result={result}/> : /*Passing Variable from prop */
                 <></>
-
           }
 
         </Page>
@@ -93,7 +94,7 @@ function MemberTable({result} : {result: MemberSearchResult}) {
                      </tbody>
                   </table>
 
-                  <Pagination />
+                  <Pagination pager={pager}/>
           </>
        )
 }
@@ -108,18 +109,18 @@ function MemberRow({member} : {member: MemberListItem}) {
 
     return (
       <tr>
-         <td>1</td>
-         <td>Aung Nyan</td>
-         <td>Backend Developer</td>
-         <td>2023-07-18</td>
-         <td className="text-center">3</td>
-         <td className="text-end">20</td>
-         <td className="text-end">20</td>
-          <td className="text-end">20</td>
+         <td>{member.id}</td>
+         <td>{member.name}</td>
+         <td>{member.position}</td>
+         <td>{member.entryAt}</td>
+         <td className="text-center">{member.projects}</td>
+         <td className="text-end">{member.created + member.onSchedule}</td>
+         <td className="text-end">{member.behind}</td>
+          <td className="text-end">{member.completed}</td>
          <td className="text-center">
             <a href="#" onClick={e => {
                e.preventDefault()
-               showDetails(1)
+               showDetails(member.id)
             }} className="icon-link">
                <i className="bi bi-arrow-right"></i>
             </a>
