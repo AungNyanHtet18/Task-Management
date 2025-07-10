@@ -1,3 +1,4 @@
+import type { MemberEditForm } from "../input/member-edit-form";
 import type { MemberSearch } from "../input/member-search";
 import { DUMMY_PAGE } from "../output/_common";
 import type { MemberListItem, MemberSearchResult } from "../output/member-list-item";
@@ -9,6 +10,22 @@ export async function searchMember(form: MemberSearch):Promise<MemberSearchResul
          pager: DUMMY_PAGE
     }
 }
+
+export async function findMemberEditForm(id: string):Promise<MemberEditForm> {
+     console.log(`Member ID : ${id}`)
+     return DUMMY_MemberEditForm
+}
+
+export async function updateMember(id:string, form: MemberEditForm):Promise<number> {
+    console.log({id: id, ...form})
+    return 1
+}
+
+export async function createMember(form: MemberEditForm):Promise<number> {
+    console.log(form);
+    return 1
+}
+
 
 const DUMMY_MEMBERS:  MemberListItem[] = [
     {
@@ -48,3 +65,11 @@ const DUMMY_MEMBERS:  MemberListItem[] = [
         canceled: 0
     }   
 ]
+
+const DUMMY_MemberEditForm: MemberEditForm = {
+     name: "Aung",
+     position: "Programmer",
+     phone: "097533753",
+     email: "mike@gmail.com",
+     entryAt: "2025-06-20"
+}
