@@ -11,6 +11,11 @@ export async function searchMember(form: MemberSearch):Promise<MemberSearchResul
     }
 }
 
+export async function findMemberById(id : number) {
+     console.log(`Find Member ID : ${id}`)
+     return DUMMY_MEMBERS.find(a => a.id == id)
+}
+
 export async function findMemberEditForm(id: string):Promise<MemberEditForm> {
      console.log(`Member ID : ${id}`)
      return DUMMY_MemberEditForm

@@ -2,14 +2,15 @@ import { useForm } from "react-hook-form";
 import { FormGroup } from "../../ui/form-group";
 import Page from "../../ui/page";
 import type { MemberEditForm } from "../../model/input/member-edit-form";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { useEffect } from "react";
-import { findMemberEditForm } from "../../model/client/member-client";
+import { createMember, findMemberEditForm, updateMember } from "../../model/client/member-client";
 
 export default function MemberEdit() {
 
-    const [queryParams] = useSearchParams() //to get variable from request
     const {register,handleSubmit,reset} = useForm<MemberEditForm>() // adding reset
+    const [queryParams] = useSearchParams() //to get variable from request
+    const navigate = useNavigate()
 
     useEffect(()=> {
         async function load(id: string) {
@@ -30,13 +31,15 @@ export default function MemberEdit() {
 
     }, [queryParams,reset])  //adding reset
 
+   async function saveMember(form: MemberEditForm) {
 
-    function saveMember(form: MemberEditForm) {
-         console.log(form)
+        const id = queryParams.get('id')
+        const result = id ? await updateMember(id, form) : await createMember(form)
+        navigate(`/member/details/${result}`) 
     }
 
      return (
-         <Page title= "Member Edit" icon="bi-pencil">
+         <Page title= {queryParams.get('id') ? 'Edit Member' : 'Add New Member'} icon="bi-pencil">
             <form onSubmit={handleSubmit(saveMember)}>
                 <div className="row mb-3">
                     <div className="col-3">
