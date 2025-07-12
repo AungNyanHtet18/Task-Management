@@ -18,7 +18,6 @@ export default function MemberEdit() {
 
             const result = await findMemberEditForm(id)
              reset(result)// when returning member information, it must add to the register: MemberEditForm  and reset 
-
         }
 
         if(queryParams) {
@@ -32,7 +31,6 @@ export default function MemberEdit() {
     }, [queryParams,reset])  //adding reset
 
    async function saveMember(form: MemberEditForm) {
-
         const id = queryParams.get('id')
         const result = id ? await updateMember(id, form) : await createMember(form)
         navigate(`/member/details/${result}`) 
