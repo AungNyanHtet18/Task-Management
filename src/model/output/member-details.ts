@@ -1,4 +1,4 @@
-export interface MemberDetails {
+export interface  MemberDetails {
      id: number
      name: string
      position: string
@@ -6,15 +6,18 @@ export interface MemberDetails {
      email: string
      entryAt: string
      retiredAt?: string
+     projects: MemberProjectItem[]
+      
 }
 
 export interface MemberProjectItem {
      id: number
      name: string
      createAt: string
-     startDate: string
+     startAt: string
      mileStone: string
      status: string
-     leader: string
      tasks: number
 }
+
+

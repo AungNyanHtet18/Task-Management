@@ -8,7 +8,7 @@ import { useState } from "react";
 import type { MemberListItem, MemberSearchResult } from "../../model/output/member-list-item";
 import { searchMember } from "../../model/client/member-client";
 
-export default function MemberList() {
+export default function MemberLisComponent() {
 
       const {register, handleSubmit} = useForm<MemberSearch>()
       const[result, setResult] = useState<MemberSearchResult | undefined>(undefined)
