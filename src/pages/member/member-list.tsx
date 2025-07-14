@@ -50,7 +50,7 @@ export default function MemberLisComponent() {
                   </button>
 
                   <Link to= "/member/edit"  type="button" className="btn btn-outline-dark">
-                     <i className="bi-plus"></i>Add New Member
+                     <i className="bi-plus-lg"></i>Create New Member
                   </Link>
 
                </div>
