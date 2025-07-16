@@ -6,7 +6,7 @@ export async function searchProject(form: ProjectSearch) : Promise<ProjectSearch
     console.log(form) 
     return {
          list : DUMMY_PROJECTS,
-         page : DUMMY_PAGE
+         pager : DUMMY_PAGE
     }
 }
 

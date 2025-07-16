@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import type { MemberListItem, MemberSearchResult } from "../../model/output/member-list-item";
 import { searchMember } from "../../model/client/member-client";
+import NoData from "../../ui/no-data";
 
 export default function MemberLisComponent() {
 
@@ -56,18 +57,20 @@ export default function MemberLisComponent() {
                </div>
             </form>
 
-          {
-            result ? 
-               <MemberTable result={result}/> : /*Passing Variable from prop */
-                <></>
-          }
+            <section className="mt-4">
+                 <MemberSearchResult result={result} />
+            </section>
 
         </Page>
      )
 }
 
 
-function MemberTable({result} : {result: MemberSearchResult}) {
+function MemberSearchResult({result} : {result?: MemberSearchResult}) {
+
+     if(!result) {
+         return <NoData dataName="member" />
+     }
 
      const {list, pager} = result
 

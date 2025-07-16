@@ -23,13 +23,13 @@ function NavBar() {
            
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <NavLink to="/project" className="nav-link">
-                        <i className="bi-rocket-takeoff"></i>Projects
+                  <NavLink to="/task" className="nav-link">
+                        <i className="bi-stack"></i>Stack
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/task" className="nav-link">
-                        <i className="bi-stack"></i>Stack
+                  <NavLink to="/project" className="nav-link">
+                        <i className="bi-rocket-takeoff"></i>Projects
                   </NavLink>
                 </li>
                 <li className="nav-item">

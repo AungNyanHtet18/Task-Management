@@ -7,6 +7,7 @@ import { useState } from "react";
 import type { ProjectSearchResult } from "../../model/output/project-list-item";
 import { searchProject } from "../../model/client/prject-client";
 import NoData from "../../ui/no-data";
+import Pagination from "../../ui/pagination";
 
 export default function ProjectListComponent() {
 
@@ -54,9 +55,9 @@ export default function ProjectListComponent() {
                </div>
          </form>
 
-          <section className="mt-4">
+          <div className="mt-4">
                <ProjectSearchResult result={result}/>
-          </section>
+          </div>
 
        </Page>
      )
@@ -68,7 +69,43 @@ function ProjectSearchResult({result} : {result? : ProjectSearchResult}) {
        return <NoData dataName="project"/>
      }
 
+     const {list,pager} = result
+
      return (
-          <></>
+         <>
+          <table className="table table-bordered table-striped">
+               <thead>
+                    <tr>
+                         <th>ID</th>
+                         <th>Name</th>
+                         <th>Create At</th>
+                         <th>Start At</th>
+                         <th>Mile Stone</th>
+                         <th>Status</th>
+                         <th className="text-end">Members</th>
+                         <th className="text-end">Tasks</th>
+                    </tr>
+               </thead>
+
+                <tbody>
+                    {list.map(item => 
+                        <tr key={item.id}>
+                           <td>{item.id}</td>
+                           <td>{item.name}</td>
+                           <td>{item.createAt}</td>
+                           <td>{item.startAt}</td>
+                           <td>{item.mileStone}</td>
+                           <td>{item.status}</td>
+                           <td className="text-end">{item.members}</td>
+                           <td className="text-end">{item.tasks}</td>
+                        </tr>
+                    )}
+                </tbody>
+          </table>
+
+          <Pagination pager={pager}/>
+
+         </>
      )
 }
+

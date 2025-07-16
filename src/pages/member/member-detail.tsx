@@ -12,13 +12,11 @@ export default function MemberDetailsComponent() {
     const params = useParams()
     const [details, setDetails] = useState<MemberDetails | undefined>();  
 
-    
     useEffect(()=> { 
         console.log(`Member ID : ${params.id}`);
         const id = params.id
 
         async function load() { 
-
            if(id) { 
              const response = await findMemberById(Number.parseInt(id))
              setDetails(response)

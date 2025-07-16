@@ -14,5 +14,5 @@ export interface ProjectListItem {
 export type ProjectSearchResult = { 
     list : ProjectListItem [] } 
     & {  
-    page :  Pager 
+    pager :  Pager 
 }
