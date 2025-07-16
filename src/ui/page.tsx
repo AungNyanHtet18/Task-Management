@@ -15,6 +15,6 @@ export default function Page({title,icon,children}: PageProps) {
 
 type PageProps = {
      title: string
-     icon: string
+     icon?: string
      children: React.ReactNode
 }
