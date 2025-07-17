@@ -1,22 +1,29 @@
+import { useState } from "react"
 import Page from "./page"
 import Pagination from "./pagination"
+import type { PageResult } from "../model/output/_common";
+import { SearchResultContext } from "../model/context/search-result-context";
 
 export default function SearchPage({icon,title,searchForm,children} : SearchPageProperties) {
-     
+    
+    const [result, setResult] = useState<PageResult<unknown>>({list: []})
+
     return (
-        <Page title={title} icon={icon}>
-            <section>
-                {searchForm}
-            </section>
+        <SearchResultContext.Provider value={[result,setResult]} >
+            <Page title={title} icon={icon}>
+                <section>
+                    {searchForm}
+                </section>
 
-            <section className="mt-3">
-                {children}
-            </section>
+                <section className="mt-3">
+                    {children}
+                </section>
 
-            <section>
-                <Pagination/>
-            </section>
-        </Page>
+                <section>
+                    <Pagination/>
+                </section>
+            </Page>
+        </SearchResultContext.Provider>
     )
 }
 
