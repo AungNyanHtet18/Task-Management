@@ -4,7 +4,7 @@ import Pagination from "./pagination"
 import type { PageResult } from "../model/output/_common";
 import { SearchResultContext } from "../model/context/search-result-context";
 
-export default function SearchPage({icon,title,searchForm,children} : SearchPageProperties) {
+export default function SearchPage({icon, title, searchForm, children} : SearchPageProperties) {
     
     const [result, setResult] = useState<PageResult<unknown>>({list: []})
 

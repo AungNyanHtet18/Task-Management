@@ -1,29 +1,36 @@
 import { Link } from "react-router";
 import { FormGroup } from "../../ui/form-group";
-import Page from "../../ui/page";
 import { useForm } from "react-hook-form";
 import type { ProjectSearch } from "../../model/input/project-search";
-import { useState } from "react";
-import type { ProjectSearchResult } from "../../model/output/project-list-item";
+import { type ProjectListItem, type ProjectSearchResult } from "../../model/output/project-list-item";
 import { searchProject } from "../../model/client/prject-client";
 import NoData from "../../ui/no-data";
-import Pagination from "../../ui/pagination";
+import { useSearchResultList, useSearchResultSetter } from "../../model/context/search-result-context";
+import SearchPage from "../../ui/search-page";
+
 
 export default function ProjectListComponent() {
 
-     const {register, handleSubmit} = useForm<ProjectSearch>();
-     const [result,setResult] = useState<ProjectSearchResult | undefined>(undefined);
+     return (
+          <SearchPage title="Project Management" icon="bi-rocket" searchForm={<SearchForm/>}>
+               <ProjectSearchResult />
+          </SearchPage>
+     )
 
+}
+
+function SearchForm() {
+
+     const setResult = useSearchResultSetter()
+     const {register, handleSubmit} = useForm<ProjectSearch>();
 
      async function search(form:ProjectSearch) {
-          const response = await searchProject(form)
-          setResult(response)
+           const response = await searchProject(form)
+           setResult(response)
      }
 
-     return (
-      <Page title="Project Management" icon="bi-rocket">
-           
-         <form onSubmit={handleSubmit(search)} className="row">
+      return (
+          <form onSubmit={handleSubmit(search)} className="row">
                <FormGroup className="col-auto" label="Status">
                     <select className="form-select" {...register('status')}>
                          <option value="">All Status</option>
@@ -54,22 +61,17 @@ export default function ProjectListComponent() {
                     </Link>
                </div>
          </form>
-
-          <div className="mt-4">
-               <ProjectSearchResult result={result}/>
-          </div>
-
-       </Page>
-     )
+      )
 }
 
-function ProjectSearchResult({result} : {result? : ProjectSearchResult}) { 
+
+function ProjectSearchResult() { 
+
+     const list = useSearchResultList<ProjectListItem>()
      
-     if(!result) {
+     if(!list.length) {
        return <NoData dataName="project"/>
      }
-
-     const {list,pager} = result
 
      return (
          <>
@@ -102,8 +104,6 @@ function ProjectSearchResult({result} : {result? : ProjectSearchResult}) {
                     )}
                 </tbody>
           </table>
-
-          <Pagination pager={pager}/>
 
          </>
      )
