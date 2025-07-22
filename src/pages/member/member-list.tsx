@@ -8,7 +8,7 @@ import { useSearchResultList, useSearchResultSetter } from "../../model/context/
 import SearchPage from "../../ui/search-page";
 import NoData from "../../ui/no-data";
 
-export default function MemberLisComponent() {
+export default function MemberListComponent() {
 
      return (
          <SearchPage title="Member Management" icon="bi-people" searchForm={<SearchForm/>}>
@@ -119,7 +119,6 @@ function MemberSearchResult() {
                   )}
                </tbody>
             </table>
-
           </>
        )
 }

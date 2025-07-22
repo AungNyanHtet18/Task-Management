@@ -14,7 +14,6 @@ function useSearchResultContext<T>() {
      return context as SearchResultContextType<T>
 }
 
-
 function useSearchResult() { 
    return useSearchResultContext()[0];
 }

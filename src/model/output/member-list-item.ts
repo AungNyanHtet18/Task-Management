@@ -1,4 +1,4 @@
-import { type Pager, type PageResult } from "./_common"
+import { type PageResult } from "./_common"
 
 export interface MemberListItem {
      id: number

@@ -14,4 +14,4 @@ export type TaskListItem = {
     status: string
 }
 
-export type  TaskSearchResult = PageResult<TaskListItem>
+export type TaskSearchResult = PageResult<TaskListItem>
