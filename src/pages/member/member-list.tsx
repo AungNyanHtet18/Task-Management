@@ -7,6 +7,7 @@ import { searchMember } from "../../model/client/member-client";
 import { useSearchResultList, useSearchResultSetter } from "../../model/context/search-result-context";
 import SearchPage from "../../ui/search-page";
 import NoData from "../../ui/no-data";
+import ShowDetails from "../../ui/showdetails";
 
 export default function MemberListComponent() {
 
@@ -69,16 +70,18 @@ function SearchForm() {
 function MemberSearchResult() {
 
      const list = useSearchResultList<MemberListItem>()
-     const navigate = useNavigate()
+     
+     //const navigate = useNavigate()  // Using Naviagate
 
       if(!list.length) { 
        return <NoData  dataName="member"/>
      }
 
-
-     function showDetails(id: number) {
+     /*
+     function showDetails(id: number) { 
        navigate(`/member/details/${id}`)
       }
+      */
 
       return (
           <>
@@ -108,12 +111,13 @@ function MemberSearchResult() {
                         <td className="text-end">{member.behind}</td>
                         <td className="text-end">{member.completed}</td>
                         <td className="text-center">
-                           <a href="#" onClick={e => {
+                           {/* <a href="#" onClick={e => {
                               e.preventDefault()
                               showDetails(member.id)
                            }} className="icon-link">
                               <i className="bi bi-arrow-right"></i>
-                           </a>
+                           </a> */}
+                            <ShowDetails to={`/member/details/${member.id}`}/>
                         </td>
                      </tr>
                   )}

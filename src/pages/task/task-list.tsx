@@ -7,6 +7,8 @@ import type { TaskSearch } from "../../model/input/task-search";
 import { searchTask } from "../../model/client/task-client";
 import NoData from "../../ui/no-data";
 import type { TaskListItem } from "../../model/output/task-list-item";
+import { Link } from "react-router";
+import ShowDetails from "../../ui/showdetails";
 
 export default function TaskListComponent() {
      return (
@@ -76,6 +78,7 @@ function SearchResult() {
                        <th>Start At</th>
                        <th>Mile Stone</th>
                        <th>Status</th>
+                       <th></th>
                     </tr>
                </thead>
                <tbody>
@@ -89,6 +92,9 @@ function SearchResult() {
                               <td>{item.startAt}</td>
                               <td>{item.mileStone}</td>
                               <td>{item.status}</td>
+                              <td>
+                                  <ShowDetails to = {`/task/details/${item.id}`}/>
+                              </td>
                          </tr>
                     )}
                </tbody>
