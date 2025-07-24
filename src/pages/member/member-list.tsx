@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { MemberSearch } from "../../model/input/member-search";
 import { FormGroup } from "../../ui/form-group";
-import { Link, useNavigate } from "react-router";
+import { Link} from "react-router";
 import type { MemberListItem} from "../../model/output/member-list-item";
 import { searchMember } from "../../model/client/member-client";
 import { useSearchResultList, useSearchResultSetter } from "../../model/context/search-result-context";

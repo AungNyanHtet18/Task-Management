@@ -7,7 +7,6 @@ import type { TaskSearch } from "../../model/input/task-search";
 import { searchTask } from "../../model/client/task-client";
 import NoData from "../../ui/no-data";
 import type { TaskListItem } from "../../model/output/task-list-item";
-import { Link } from "react-router";
 import ShowDetails from "../../ui/showdetails";
 
 export default function TaskListComponent() {
