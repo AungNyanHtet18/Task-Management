@@ -1,24 +1,24 @@
-import { Form, useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import Page from "../../ui/page";
 import { FormGroup } from "../../ui/form-group";
 import { useForm } from "react-hook-form";
 import type { ProjectEditForm } from "../../model/input/project-edit-form";
 import ErrorMessage from "../../ui/error-message";
 import { useEffect } from "react";
-import { findProjectForEdit } from "../../model/client/prject-client";
+import { createProject, findProjectForEdit, updateProject } from "../../model/client/prject-client";
 
 export default function ProjectEditComponent() {
 
-
    const [queryParams] = useSearchParams()
    const id = queryParams.get('id')
+   const navigate = useNavigate()
 
-   const {register, handleSubmit, reset,  formState: {errors}} = useForm<ProjectEditForm>()
+   const {register, handleSubmit, reset, formState: {errors}} = useForm<ProjectEditForm>()
 
    useEffect(() => {
       async function load(id: unknown) {
          const response = await findProjectForEdit(id)
-         reset(response)
+         reset(response) //adding returning info of project edit form to the useForm
       }
 
       if(id) {
@@ -27,8 +27,11 @@ export default function ProjectEditComponent() {
 
    },[id, reset])
 
-   function save(form: ProjectEditForm) { 
-      console.log(form)
+   async function save(form: ProjectEditForm) { 
+      const result = id ? await updateProject(id, form) : await createProject(form)
+      console.log(result)
+
+      navigate(`/project/details/${result.id}`)
    }
 
    return (
