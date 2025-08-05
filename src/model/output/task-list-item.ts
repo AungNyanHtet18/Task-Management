@@ -1,6 +1,6 @@
 import type { PageResult } from "./_common"
 
-export type TaskListItem = { 
+export interface TaskListItem { 
     id: number
     projectId: number
     projectName: string

@@ -28,8 +28,8 @@ export default function SearchPage({icon, title, searchForm, children} : SearchP
 }
 
 type SearchPageProperties = { 
-    title: string
     icon?: string
+    title: string
     searchForm?: React.ReactNode
     children?: React.ReactNode 
 }

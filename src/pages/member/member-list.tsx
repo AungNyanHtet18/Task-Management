@@ -117,6 +117,7 @@ function MemberSearchResult() {
                            }} className="icon-link">
                               <i className="bi bi-arrow-right"></i>
                            </a> */}
+                           
                             <ShowDetails to={`/member/details/${member.id}`}/>
                         </td>
                      </tr>

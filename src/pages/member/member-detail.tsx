@@ -17,20 +17,19 @@ export default function MemberDetailsComponent() {
         const id = params.id
 
         async function load() { 
+            
            if(id) { 
              const response = await findMemberById(Number.parseInt(id))
              setDetails(response)
             }    
         }
 
-        load();
-        
+        load()
+
     },[params])
 
     if(!details) {
-         return (
-              <Loading />
-         )      
+         return (<Loading />)      
     }
 
     const {projects, ...profile} = details

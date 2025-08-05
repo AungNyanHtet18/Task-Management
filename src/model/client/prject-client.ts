@@ -12,7 +12,7 @@ export async function searchProject(form: ProjectSearch) : Promise<ProjectSearch
 }
 
 export async function findProjectForEdit(id : unknown): Promise<ProjectEditForm> {
-     console.log(id)
+     console.log(id) 
      return {
          name: "Pos Development",
          startDate: "2025-04-01",

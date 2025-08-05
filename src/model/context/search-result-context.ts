@@ -2,10 +2,10 @@ import { createContext, useContext } from "react";
 import type { PageResult } from "../output/_common";
 
 type SearchResultContextType<T> = [result:PageResult<T>, setResult: (result:PageResult<T>) => void]
-const SearchResultContext = createContext<SearchResultContextType<unknown> | undefined>(undefined);
+const SearchResultContext = createContext<SearchResultContextType<unknown> | undefined>(undefined)
 
 function useSearchResultContext<T>() {
-     const context = useContext(SearchResultContext);
+     const context = useContext(SearchResultContext)
 
      if(!context) { 
         throw new Error("Invalid usage of Search Result Context")

@@ -11,13 +11,11 @@ import ShowDetails from "../../ui/showdetails";
 
 
 export default function ProjectListComponent() {
-
      return (
           <SearchPage title="Project Management" icon="bi-rocket" searchForm={<SearchForm/>}>
                <ProjectSearchResult />
           </SearchPage>
      )
-
 }
 
 function SearchForm() {
@@ -53,8 +51,7 @@ function SearchForm() {
      
                <div className="col btn-wrapper">
                     <button type="submit" className="btn btn-dark me-2">
-                         <i className="bi-search"></i>
-                         Search
+                         <i className="bi-search"></i>Search
                     </button>
 
                     <Link to = '/project/edit' className="btn btn-outline-dark">
@@ -109,7 +106,6 @@ function ProjectSearchResult() {
                     )}
                 </tbody>
           </table>
-
          </>
      )
 }
