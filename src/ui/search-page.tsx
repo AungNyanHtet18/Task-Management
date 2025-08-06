@@ -2,7 +2,7 @@ import { useState } from "react"
 import Page from "./page"
 import Pagination from "./pagination"
 import type { PageResult } from "../model/output/_common";
-import { SearchResultContext } from "../model/context/search-result-context";
+import { SearchResultContext, useSearchResultPager } from "../model/context/search-result-context";
 
 export default function SearchPage({icon, title, searchForm, children} : SearchPageProperties) {
     
@@ -20,10 +20,19 @@ export default function SearchPage({icon, title, searchForm, children} : SearchP
                 </section>
 
                 <section>
-                    <Pagination/>
+                    <SearchPagePagination/>
                 </section>
             </Page>
         </SearchResultContext.Provider>
+    )
+}
+
+function SearchPagePagination() { 
+
+    const pager = useSearchResultPager()
+
+    return (
+        <Pagination pager={pager}/>
     )
 }
 
