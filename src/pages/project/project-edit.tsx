@@ -31,7 +31,7 @@ export default function ProjectEditComponent() {
       const result = id ? await updateProject(id, form) : await createProject(form)
       console.log(result)
 
-      navigate(`/project/details/${result.id}/task`)
+      navigate(`/project/details/${result.id}/overview`)
    }
 
    return (
