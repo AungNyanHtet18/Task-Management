@@ -12,7 +12,11 @@ import MemberListComponent from './pages/member/member-list.tsx'
 import ProjectEditComponent from './pages/project/project-edit.tsx'
 import TaskEditComponent from './pages/task/task-edit.tsx'
 import TaskDetailComponent from './pages/task/task-detail.tsx'
-import ProjectDetailsComponent from './pages/project/project-detail.tsx'
+import ProjectDetails from './pages/project/details/_layout.tsx'
+import ProjectTaskList from './pages/project/details/task-list.tsx'
+import ProjectCategoryList from './pages/project/details/category-list.tsx'
+import ProjectMemberList from './pages/project/details/member-list.tsx'
+import ProjectTaskEdit from './pages/project/details/task-edit.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -22,7 +26,12 @@ createRoot(document.getElementById('root')!).render(
             <Route index element={<HomeComponent/>}/>
             <Route path= "project" element={<ProjectListComponent/>}/>
             <Route path= "project/edit" element={<ProjectEditComponent/>}/>
-            <Route path= "project/details/:id" element={<ProjectDetailsComponent/>}/>
+            <Route path= "project/details/:id" element={<ProjectDetails/>}>
+                <Route path='task' element={<ProjectTaskList/>}/>
+                <Route path='category' element={<ProjectCategoryList/>}/>
+                <Route path='member' element={<ProjectMemberList/>}/>
+                <Route path='task/edit/:taskId' element={<ProjectTaskEdit/>}/>
+            </Route>
             <Route path= "member" element={<MemberListComponent/>}/>
             <Route path= "member/edit" element={<MemberEditComponent/>}/>
             <Route path= "member/details/:id" element={<MemberDetailsComponent/>}/>

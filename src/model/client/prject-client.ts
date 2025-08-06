@@ -16,7 +16,8 @@ export async function findProjectForEdit(id : unknown): Promise<ProjectEditForm>
      return {
          name: "Pos Development",
          startDate: "2025-04-01",
-         mileStone: "2025-10-30"
+         mileStone: "2025-10-30",
+         description: "This make easily for merchant"
      }
 }
 

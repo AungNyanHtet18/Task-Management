@@ -31,7 +31,7 @@ export default function ProjectEditComponent() {
       const result = id ? await updateProject(id, form) : await createProject(form)
       console.log(result)
 
-      navigate(`/project/details/${result.id}`)
+      navigate(`/project/details/${result.id}/task`)
    }
 
    return (
@@ -59,9 +59,7 @@ export default function ProjectEditComponent() {
                 </div>
 
                  <FormGroup label="Description" className="mt-3">
-                     <textarea className="form-control" {...register('description',{required: "Please enter description"})}></textarea>
-                     {errors.description &&
-                      <ErrorMessage message = {errors.description.message} />}
+                     <textarea className="form-control" {...register('description')}></textarea>                 
                  </FormGroup>
 
                   <div className="mt-3">
@@ -70,7 +68,6 @@ export default function ProjectEditComponent() {
                      </button>
                   </div>
             </form>
-
         </Page>
      )
 }

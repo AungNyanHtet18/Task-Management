@@ -100,7 +100,7 @@ function ProjectSearchResult() {
                            <td className="text-end">{item.members}</td>
                            <td className="text-end">{item.tasks}</td>
                            <td className="text-center">
-                              <ShowDetails to={`/project/details/${item.id}`}/>
+                              <ShowDetails to={`/project/details/${item.id}/task`}/>
                            </td>
                         </tr>
                     )}

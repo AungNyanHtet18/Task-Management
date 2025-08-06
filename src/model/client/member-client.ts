@@ -44,10 +44,9 @@ export async function updateMember(id:string, form: MemberEditForm):Promise<Modi
 }
 
 export async function createMember(form: MemberEditForm):Promise<ModificationResult> {
-    console.log(form);
+    console.log(form)
     return {id: 1}
 }
-
 
 const DUMMY_MEMBERS:  MemberListItem[] = [
     {
