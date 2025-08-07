@@ -1,20 +1,31 @@
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import { FormGroup } from "../../../ui/form-group";
 import { useForm } from "react-hook-form";
 import type { TaskSearch } from "../../../model/input/task-search";
-import { useState } from "react";
-import type { TaskListItem, TaskSearchResult } from "../../../model/output/task-list-item";
+import { useEffect, useState } from "react";
+import type { TaskListItem} from "../../../model/output/task-list-item";
 import { searchTask } from "../../../model/client/task-client";
 import type { Pager } from "../../../model/output/_common";
 import NoData from "../../../ui/no-data";
 import Pagination from "../../../ui/pagination";
 
+
 export default function ProjectTaskList() {
 
-    const {handleSubmit} = useForm<TaskSearch>()
+    const {register, handleSubmit, reset} = useForm<TaskSearch>()
     const [list, setList] = useState<TaskListItem[]>([])
     const [pager, setPager] = useState<Pager>()
 
+    const params = useParams()
+    const projectId = params.id
+
+    useEffect(()=> { 
+        if(projectId) {
+             reset({projectId: projectId }) // adding to the register
+        }        
+
+    }, [projectId, reset])
+    
     async function Search(params: TaskSearch) {
         const {list, pager} = await searchTask(params)
          setList(list)
@@ -25,21 +36,21 @@ export default function ProjectTaskList() {
         <>
             <form className="row" onSubmit={handleSubmit(Search)}>
                 <FormGroup className="col-auto" label="Status">
-                   <select className="form-select">
+                   <select {...register('status')} className="form-select">
                       <option value="">All Status</option>
                    </select>
                 </FormGroup>
 
                 <FormGroup className="col-auto" label="Start From">
-                    <input type="date" className="form-control" />
+                    <input {...register('startFrom')} type="date" className="form-control" />
                 </FormGroup>
 
                 <FormGroup className="col-auto" label="Start To">
-                    <input type="date" className="form-control" />
+                    <input {...register('startTo')} type="date" className="form-control" />
                 </FormGroup>
 
                 <FormGroup className="col-auto" label="Keyword">
-                    <input placeholder="Search Keyword" className="form-control" />
+                    <input {...register('keyword')} placeholder="Search Keyword" className="form-control" />
                 </FormGroup>
 
                 <div className="col btn-wrapper">
@@ -81,7 +92,7 @@ export default function ProjectTaskList() {
                                      <td>{item.status}</td>
                                      <td className="text-center">
                                         <Link to={`${item.id}`} className="icon-link">
-
+                                             <i className = "bi-arrow-right"></i>
                                         </Link>
                                      </td>
                                  </tr>

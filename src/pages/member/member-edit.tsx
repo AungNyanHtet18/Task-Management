@@ -17,7 +17,7 @@ export default function MemberEditComponent() {
             console.log(`Member ID is ${id}`)
 
             const result = await findMemberEditForm(id)
-             reset(result)// when returning member information, it must add to the register: MemberEditForm  and reset 
+             reset(result) // when returning member information, it must add to the register: MemberEditForm  and reset 
         }
 
         if(queryParams) {

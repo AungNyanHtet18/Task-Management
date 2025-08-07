@@ -26,7 +26,7 @@ function Navigation() {
                 <NavLink to="member" className="nav-link">Members</NavLink>
             </li>
             <li className="nav-item">
-                <NavLink to="category" className="nav-link">Category</NavLink>
+                <NavLink to="category" className="nav-link">Categories</NavLink>
             </li>
         </ul>
      )

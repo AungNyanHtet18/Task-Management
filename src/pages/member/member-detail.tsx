@@ -68,23 +68,23 @@ export default function MemberDetailsComponent() {
 function Profile({data} : {data : Omit<MemberDetails, "projects">}) {
      return (
         <section>
-            <FormGroup label="Name" className="mb-3">
+            <FormGroup label="Name" className="mb-2">
                 <span className="form-control">{data.name}</span>
             </FormGroup>
 
-            <FormGroup label="Position" className="mb-3">
+            <FormGroup label="Position" className="mb-2">
                 <span className="form-control">{data.position}</span>
             </FormGroup>
 
-            <FormGroup label="Phone" className="mb-3">
+            <FormGroup label="Phone" className="mb-2">
                 <span className="form-control">{data.phone}</span>
             </FormGroup>
 
-            <FormGroup label="Email" className="mb-3">
+            <FormGroup label="Email" className="mb-2">
                 <span className="form-control">{data.email}</span>
             </FormGroup>
 
-            <FormGroup label="Entry At" className="mb-3">
+            <FormGroup label="Entry At" className="mb-2">
                 <span className="form-control">{data.entryAt}</span>
             </FormGroup>
 
