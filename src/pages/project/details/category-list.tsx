@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import type { CategoryListItem } from "../../../model/input/category-list-item";
 import NoData from "../../../ui/no-data";
+import { searchCategory } from "../../../model/client/category-client";
 
 export default function ProjectCategoryList() {
 
@@ -25,6 +26,8 @@ export default function ProjectCategoryList() {
     
       async function search(form:CategorySearch) {
             console.log(form)
+            const response = await searchCategory(form)
+            setList(response)
       }
 
      return(
@@ -52,13 +55,27 @@ export default function ProjectCategoryList() {
                       <tr>
                           <th>ID</th>
                           <th>Name</th>
-                          <th>Pending</th>
-                          <th>Progress</th>
-                          <th>Behind</th>
-                          <th>Pause</th>
-                          <th>Finished</th>
+                          <th className="text-end">Pending</th>
+                          <th className="text-end">Progress</th>
+                          <th className="text-end">Behind</th>
+                          <th className="text-end">Pause</th>
+                          <th className="text-end">Finished</th>
                       </tr>
-                   </thead>
+                    </thead>
+
+                    <tbody>
+                        {list.map(item => 
+                        <tr key={item.id}>
+                            <td>{item.id}</td>
+                            <td>{item.name}</td>
+                            <td className="text-end">{item.pending}</td>
+                            <td className="text-end">{item.progress}</td>
+                            <td className="text-end">{item.behind}</td>
+                            <td className="text-end">{item.paused}</td>
+                            <td className="text-end">{item.finished}</td>
+                        </tr>
+                        )}
+                    </tbody>
 
                 </table>  : 
                 
