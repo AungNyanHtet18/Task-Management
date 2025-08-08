@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import type { CategoryListItem } from "../../../model/input/category-list-item";
 import NoData from "../../../ui/no-data";
 import { searchCategory } from "../../../model/client/category-client";
+import ModalDialog from "../../../ui/modal-dialog";
 
 export default function ProjectCategoryList() {
 
@@ -15,6 +16,7 @@ export default function ProjectCategoryList() {
     const {register, reset, handleSubmit} = useForm<CategorySearch>();
     const [list, setList] = useState<CategoryListItem[]>([])
 
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(()=> {
          if(projectId){  
@@ -42,7 +44,7 @@ export default function ProjectCategoryList() {
                      <i className="bi-search"></i>Search
                    </button>
 
-                   <button type="button" className="btn btn-outline-dark ms-2">
+                   <button type="button" onClick={()=> setShowModal(true)} className="btn btn-outline-dark ms-2">
                       <i className="bi-plus"></i>Add New
                    </button>
                </div>
@@ -79,9 +81,15 @@ export default function ProjectCategoryList() {
 
                 </table>  : 
                 
-                <NoData dataName="Categor"/>     
+                <NoData dataName="Category"/>     
                } 
            </section>
+
+           <ModalDialog title="Add New Category" show={showModal}>
+               <form >
+
+               </form>
+           </ModalDialog>
          </>
      )
 }
