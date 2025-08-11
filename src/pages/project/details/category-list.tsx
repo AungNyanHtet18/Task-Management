@@ -44,7 +44,7 @@ export default function ProjectCategoryList() {
                      <i className="bi-search"></i>Search
                    </button>
 
-                   <button type="button" onClick={()=> setShowModal(true)} className="btn btn-outline-dark ms-2">
+                   <button type="button" className="btn btn-outline-dark ms-2">
                       <i className="bi-plus"></i>Add New
                    </button>
                </div>
@@ -85,11 +85,22 @@ export default function ProjectCategoryList() {
                } 
            </section>
 
-           <ModalDialog title="Add New Category" show={showModal}>
-               <form >
+           <CategoryEditDialog />
+         </>
+     )
+}
 
+
+function CategoryEditDialog({show = false}) {
+
+    const [showDialog, setShowDialog] = useState(show)
+
+     return (  
+           <ModalDialog title="Add New Category" show={showDialog} onHide={()=> {} } onSave={()=> {}}>
+               <form >
+                 {/*Form fieds for editing category */}
+                
                </form>
            </ModalDialog>
-         </>
      )
 }

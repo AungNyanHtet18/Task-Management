@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import type { PageResult } from "../output/_common";
 
-type SearchResultContextType<T> = [result:PageResult<T>, setResult: (result:PageResult<T>) => void]
+type SearchResultContextType<T> = [result: PageResult<T>,setResult:  (result:PageResult<T>) => void]
 const SearchResultContext = createContext<SearchResultContextType<unknown> | undefined>(undefined)
 
 function useSearchResultContext<T>() {
