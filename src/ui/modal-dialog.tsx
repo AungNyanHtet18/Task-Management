@@ -44,15 +44,22 @@ export default function ModalDialog({title, show, children, onHide, onSave} : Mo
                         {children}
                     </div>
 
-                    <div className="modal-footer">
-                        <button className="btn btn-secondary" onClick={onHide}>
-                            <i className="bi-x"></i>Close
-                        </button>
+                    {(onHide || onSave) &&  
+                        <div className="modal-footer">
+                            { onHide && 
+                                <button className="btn btn-secondary" onClick={onHide}>
+                                    <i className="bi-x"></i>Close
+                                </button>
+                            }
 
-                        <button className="btn btn-primary" onClick={onSave}>
-                            <i className="bi-check"></i>Save Changes
-                        </button>
-                    </div>
+                            { onSave &&
+                            <button className="btn btn-primary" onClick={onSave}>
+                                <i className="bi-check"></i>Save Changes
+                            </button>
+                            }
+                        </div>
+                    }
+
                 </div>
             </div>
         </section>

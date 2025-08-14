@@ -1,22 +1,36 @@
 import { useForm } from "react-hook-form";
 import { FormGroup } from "../../../ui/form-group";
 import type { CategorySearch } from "../../../model/input/category-search";
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { Form, useParams } from "react-router";
+import { useEffect, useRef, useState } from "react";
 import type { CategoryListItem } from "../../../model/input/category-list-item";
 import NoData from "../../../ui/no-data";
 import { searchCategory } from "../../../model/client/category-client";
 import ModalDialog from "../../../ui/modal-dialog";
+import ModalStateContentProvider from "../../../model/context/modal-state-context-provider";
+import { useModalStateContext } from "../../../model/context/modal-state-context";
+import type { CategoryForm } from "../../../model/input/category-form";
+import ErrorMessage from "../../../ui/error-message";
+
 
 export default function ProjectCategoryList() {
+        return (
+            <ModalStateContentProvider>
+                <CategoryList/>
+                <CategoryEditDialog />
+            </ModalStateContentProvider>
+        )
+}
 
+function CategoryList() {
+     
     const params = useParams()
     const projectId = params.id
     
     const {register, reset, handleSubmit} = useForm<CategorySearch>();
     const [list, setList] = useState<CategoryListItem[]>([])
 
-    const [showModal, setShowModal] = useState(false)
+    const [_, setShowDialog] = useModalStateContext()
 
     useEffect(()=> {
          if(projectId){  
@@ -44,7 +58,7 @@ export default function ProjectCategoryList() {
                      <i className="bi-search"></i>Search
                    </button>
 
-                   <button type="button" className="btn btn-outline-dark ms-2">
+                   <button type="button" onClick={()=> setShowDialog(true)} className="btn btn-outline-dark ms-2">
                       <i className="bi-plus"></i>Add New
                    </button>
                </div>
@@ -84,22 +98,35 @@ export default function ProjectCategoryList() {
                 <NoData dataName="Category"/>     
                } 
            </section>
-
-           <CategoryEditDialog />
          </>
      )
 }
 
 
-function CategoryEditDialog({show = false}) {
+function CategoryEditDialog() {
 
-    const [showDialog, setShowDialog] = useState(show)
+    const formRef = useRef<HTMLFormElement | null>(null)
+    const {register, handleSubmit, formState : {errors}} = useForm<CategoryForm>()
+    const [showDialog, setShowDialog] = useModalStateContext()
+    
+    async function onSave(form: CategoryForm) {
+        console.log(form)
+        setShowDialog(false)
+    }
 
      return (  
-           <ModalDialog title="Add New Category" show={showDialog} onHide={()=> {} } onSave={()=> {}}>
-               <form >
-                 {/*Form fieds for editing category */}
-                
+           <ModalDialog title="Edit Category" 
+                    show={showDialog} 
+                    onHide={()=> setShowDialog(false) }
+                    onSave={()=> formRef.current?.requestSubmit()} >
+
+               <form ref={formRef} onSubmit={handleSubmit(onSave)} className="row">
+                    <FormGroup label="Name" className="col" >
+                        <input {...register('name',{required : true})} type="text" className="form-control" placeholder="Enter Category Name" />
+                        {errors.name && <ErrorMessage message="Please enter category name"/>}
+                    </FormGroup>
+
+
                </form>
            </ModalDialog>
      )
