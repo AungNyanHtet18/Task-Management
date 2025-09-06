@@ -11,12 +11,17 @@ import ModalStateContentProvider from "../../../model/provider/modal-state-conte
 import { useModalStateContext } from "../../../model/context/modal-state-context";
 import type { CategoryForm } from "../../../model/input/category-form";
 import ErrorMessage from "../../../ui/error-message";
+import { EditCategoryContext, useEditCategoryContext } from "../../../model/context/edit-category-context";
+import EditCategoryContextProvider from "../../../model/provider/category-edit-context-provider";
+import CategoryEditContextProvider from "../../../model/provider/category-edit-context-provider";
 
 export default function ProjectCategoryList() {
         return (
             <ModalStateContentProvider>
-                <CategoryList/>
-                <CategoryEditDialog />
+                <CategoryEditContextProvider>
+                    <CategoryList/>
+                    <CategoryEditDialog />
+                </CategoryEditContextProvider>
             </ModalStateContentProvider>
         )
 }
@@ -30,6 +35,8 @@ function CategoryList() {
     const [list, setList] = useState<CategoryListItem[]>([])
 
     const [_, setShowDialog] = useModalStateContext()
+    const [__, setEditCategory] = useEditCategoryContext()
+
 
     useEffect(()=> {
          if(projectId){  
