@@ -38,13 +38,13 @@ export async function findMemberEditForm(id: string):Promise<MemberEditForm> {
      return DUMMY_MemberEditForm
 }
 
-export async function updateMember(id:string, form: MemberEditForm):Promise<ModificationResult> {
-    console.log({id: id, ...form})
+export async function createMember(form: MemberEditForm):Promise<ModificationResult> {
+    console.log(form)
     return {id: 1}
 }
 
-export async function createMember(form: MemberEditForm):Promise<ModificationResult> {
-    console.log(form)
+export async function updateMember(id:string, form: MemberEditForm):Promise<ModificationResult> {
+    console.log({id: id, ...form})
     return {id: 1}
 }
 

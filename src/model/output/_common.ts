@@ -21,5 +21,5 @@ export const DUMMY_PAGE: Pager = {
 }
 
 export type ModificationResult = {
-      id: number
+      id: unknown
 }

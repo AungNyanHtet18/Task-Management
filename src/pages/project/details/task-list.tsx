@@ -91,7 +91,7 @@ export default function ProjectTaskList() {
                                      <td>{item.mileStone}</td>
                                      <td>{item.status}</td>
                                      <td className="text-center">
-                                        <Link to={`${item.id}`} className="icon-link">
+                                        <Link to={`edit`} className="icon-link">
                                              <i className = "bi-arrow-right"></i>
                                         </Link>
                                      </td>

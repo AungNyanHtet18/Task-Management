@@ -9,6 +9,7 @@ const useModalStateContext = () => {
      if(!context) {
         throw new Error("Invalid usage of Modal State Context")
      }
+     
      return context
 }
 
