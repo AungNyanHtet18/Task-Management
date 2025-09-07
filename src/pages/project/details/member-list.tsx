@@ -25,7 +25,7 @@ function MemberSearch() {
     return (
       <>
        <Card title="Search Member">
-          <></>
+          
        </Card>
       </>
     )
