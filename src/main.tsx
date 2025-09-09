@@ -31,7 +31,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path='category' element={<ProjectCategoryList/>}/>
                 <Route path='member' element={<ProjectMemberList/>}/>
                 <Route path='task/edit' element={<ProjectTaskEdit/>}/>
-                <Route path='task/:id' element={<ProjectTaskDetails/>}/>
+                <Route path='task/:taskId' element={<ProjectTaskDetails/>}/>
             </Route>
             <Route path= "member" element={<MemberListComponent/>}/>
             <Route path= "member/edit" element={<MemberEditComponent/>}/>

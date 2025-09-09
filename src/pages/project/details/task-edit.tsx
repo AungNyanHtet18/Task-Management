@@ -2,13 +2,17 @@ import { useForm } from "react-hook-form";
 import { FormGroup } from "../../../ui/form-group";
 import type { TaskForm } from "../../../model/input/task-form";
 import ErrorMessage from "../../../ui/error-message";
-import { useSearchParams } from "react-router";
+import { useNavigate, useParams, useSearchParams } from "react-router";
 import { useEffect } from "react";
+import { createTask, updateTask } from "../../../model/client/task-client";
 
 export default function ProjectTaskEdit() {
 
    const [search] = useSearchParams()
-   const taskId = search.get("id")
+   const param = useParams()
+   const projectId = param.id  // it get id from this route project/details/:id/task/edit
+   const taskId = search.get("taskId")
+   const navigate = useNavigate()    
 
    const {register, handleSubmit, formState : {errors}} = useForm<TaskForm>()
 
@@ -19,8 +23,10 @@ export default function ProjectTaskEdit() {
        }
    },[taskId])
 
+
    async function saveTask(data: TaskForm) {
-       console.log("Task saved:", data)
+       const result = taskId ? await updateTask(taskId, data) : await createTask(data)
+       navigate(`/project/details/${projectId}/task/${result.id}`)
    }
 
      return (
